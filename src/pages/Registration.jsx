@@ -9,9 +9,10 @@ export default function Register() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
+    password2:""
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -20,59 +21,83 @@ export default function Register() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+useEffect(() => {
+  setFormData({ name: "", email: "", password: "", password2: "" });
+}, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerUser(formData))
-      .unwrap()
-      .then(() => {
-        alert("Registration successful!");
-        navigate("/login");
-      })
-      .catch((err) => alert(err.message || "Registration failed"));
+
+  // ✅ Confirm password validation
+  if (formData.password !== formData.password2) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  // Prepare payload (optional: remove password2)
+  const payload = {
+    username: formData.name,
+    email: formData.email,
+    password: formData.password,
+    password2:formData.password2
   };
 
-  // ------------------- GOOGLE LOGIN -------------------
-  useEffect(() => {
-    /* global google */
-    if (window.google) {
-      google.accounts.id.initialize({
-        client_id: "YOUR_GOOGLE_CLIENT_ID", // ⬅️ Replace with your Google Client ID
-        callback: handleGoogleResponse,
-      });
-
-      google.accounts.id.renderButton(
-        document.getElementById("googleSignUp"),
-        { theme: "outline", size: "large", width: "100%" }
-      );
-    }
-  }, []);
-
-  const handleGoogleResponse = async (response) => {
-    const token = response.credential;
-    console.log("Google JWT Token:", token);
-
-    // Optional: send token to backend to register/login user
-    // Example:
-    // const res = await axios.post("/api/auth/google-register", { token });
-    // dispatch(setUser(res.data.user));
-    // navigate("/dashboard");
-
-    alert("Google signup token received. Implement backend logic next!");
+  dispatch(registerUser(payload))
+    .unwrap()
+    .then(() => {
+       setFormData({ name: "", email: "", password: "", password2: "" });
+      alert("Registration successful!");
+      navigate("/login");
+    })
+    .catch((err) => alert(err.message || "Registration failed"));
   };
-  // -----------------------------------------------------
+
+  // // ------------------- GOOGLE LOGIN -------------------
+  // useEffect(() => {
+  //   /* global google */
+  //   if (window.google) {
+  //     google.accounts.id.initialize({
+  //       client_id: "YOUR_GOOGLE_CLIENT_ID", // ⬅️ Replace with your Google Client ID
+  //       callback: handleGoogleResponse,
+  //     });
+
+  //     google.accounts.id.renderButton(
+  //       document.getElementById("googleSignUp"),
+  //       { theme: "outline", size: "large", width: "100%" }
+  //     );
+  //   }
+  // }, []);
+
+  // const handleGoogleResponse = async (response) => {
+  //   const token = response.credential;
+  //   console.log("Google JWT Token:", token);
+
+  //   // Optional: send token to backend to register/login user
+  //   // Example:
+  //   // const res = await axios.post("/api/auth/google-register", { token });
+  //   // dispatch(setUser(res.data.user));
+  //   // navigate("/dashboard");
+
+  //   alert("Google signup token received. Implement backend logic next!");
+  // };
+  // // -----------------------------------------------------
 
   return (
     <div
       className="flex items-center justify-center min-h-screen bg-cover bg-center bg-no-repeat transition-all duration-700"
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1740&q=80')",
+          "url('')",
       }}
     >
       <div className="bg-white p-8 rounded-2xl shadow-2xl w-96 transform transition-all duration-500 hover:scale-105 animate-fadeIn">
         <h2 className="text-2xl font-bold mb-4 text-center text-blue-600">
-          Create Account
+          Let’s Create an Account!
         </h2>
+          <p className="text-center text-gray-600 mb-6">
+          Join us and start booking appointments in seconds.
+        </p>
+
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
@@ -95,11 +120,36 @@ export default function Register() {
             required
           />
 
+        
+<div className="relative">
+  <input
+    type={showPassword ? "text" : "password"}
+    name="password2"
+    placeholder="Password"
+    value={formData.password2}
+    onChange={handleChange}
+    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+    required
+  />
+  <button
+    type="button"
+    onClick={() => setShowPassword(!showPassword)}
+    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+  >
+    {showPassword ? (
+      <AiFillEye size={20} />
+    ) : (
+      <AiFillEyeInvisible size={20} />
+    )}
+  </button>
+</div>
+
+
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
-              placeholder="Password"
+              placeholder="Confirm Password"
               value={formData.password}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
@@ -150,3 +200,4 @@ export default function Register() {
     </div>
   );
 }
+

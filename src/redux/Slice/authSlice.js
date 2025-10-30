@@ -3,20 +3,23 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { saveToStorage, getFromStorage, removeFromStorage } from "../store/storage";
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "http://localhost:8000/api/auth";
 
 // ✅ Register User
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
-  async (userData, { rejectWithValue }) => {
+  async (formData, { rejectWithValue }) => {
     try {
-      const res = await axios.post(`${API_URL}/register`, userData);
+      const res = await axios.post("http://localhost:8000/api/register/", formData);
+      console.log( res.data)
       return res.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data || "Registration failed");
+      
+    } catch (err) {
+      return rejectWithValue(err.response.data);
     }
   }
 );
+
 
 
 
