@@ -1,6 +1,7 @@
 import React from "react";
 import { addToCart } from "../../../utils/cart";
 import { useNavigate } from 'react-router-dom';
+import { FaShoppingCart } from "react-icons/fa";
 
 const bridalGroomServices = [
   {
@@ -63,9 +64,9 @@ const addOns = [
 export default function MaleBridal() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+  <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
       {/* ---------- HERO SECTION ---------- */}
-      <div className="relative bg-gradient-to-r from-pink-600 via-pink-400 to-rose-400 py-28 text-center overflow-hidden">
+  <div className="relative bg-gradient-to-r from-purple-600 via-purple-400 to-purple-500 py-28 text-center overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1604135354658-7fef3b4bf8f6?auto=format&fit=crop&w=1500&q=80"
           alt="Groom Services"
@@ -80,7 +81,7 @@ export default function MaleBridal() {
             to make every groom feel confident, classy, and camera-ready.
           </p>
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-pink-300 to-pink-600"></div>
+  <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-purple-300 to-purple-600"></div>
       </div>
 
       {/* ---------- FEATURED QUOTE ---------- */}
@@ -113,7 +114,7 @@ export default function MaleBridal() {
                 {service.name}
               </h3>
               <p className="text-gray-600 mb-4">{service.description}</p>
-              <p className="text-xl font-semibold text-pink-600 mb-4">
+              <p className="text-xl font-semibold text-purple-600 mb-4">
                 {service.price}
               </p>
               <button
@@ -121,9 +122,10 @@ export default function MaleBridal() {
                   addToCart({ id: index, name: service.name, price: service.price, category: 'groom-bridal' });
                   navigate('/booking');
                 }}
-                className="px-6 py-2 w-full rounded-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-medium shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300"
+                className="px-6 py-2 w-full rounded-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-medium shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
               >
-                Book Now
+                <FaShoppingCart className="text-lg" />
+                Add to Cart
               </button>
             </div>
           </div>
@@ -131,9 +133,9 @@ export default function MaleBridal() {
       </div>
 
       {/* ---------- ADD-ONS SECTION ---------- */}
-      <div className="relative py-16 bg-gradient-to-r from-pink-100 via-pink-50 to-rose-100">
+      <div className="relative py-16 bg-gradient-to-r from-purple-100 via-purple-50 to-purple-100">
         <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-4xl font-bold text-pink-700 mb-6">
+          <h2 className="text-4xl font-bold text-purple-700 mb-6">
             Groom’s Luxury Add-ons 💈
           </h2>
           <p className="text-gray-600 mb-12">
@@ -145,18 +147,19 @@ export default function MaleBridal() {
             {addOns.map((addon, index) => (
               <div
                 key={index}
-                className="bg-white/70 backdrop-blur-md rounded-2xl shadow-md p-6 border border-pink-100 hover:shadow-lg transition-all duration-300"
+                className="bg-white/70 backdrop-blur-md rounded-2xl shadow-md p-6 border border-purple-100 hover:shadow-lg transition-all duration-300"
               >
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">
                   {addon.name}
                 </h3>
-                <p className="text-pink-600 font-medium">{addon.price}</p>
+                <p className="text-purple-600 font-medium">{addon.price}</p>
               </div>
             ))}
           </div>
 
-          <button className="mt-12 px-10 py-3 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 to-pink-600 rounded-full shadow-lg hover:scale-110 hover:shadow-2xl transition-all duration-300">
-            Schedule Your Grooming Session 💍
+          <button className="mt-12 px-10 py-3 text-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-purple-600 rounded-full shadow-lg hover:scale-110 hover:shadow-2xl transition-all duration-300 flex items-center gap-2 mx-auto">
+            <FaShoppingCart className="text-lg" />
+            Add Grooming Package to Cart 💍
           </button>
         </div>
       </div>

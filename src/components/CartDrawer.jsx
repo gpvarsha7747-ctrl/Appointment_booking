@@ -75,7 +75,7 @@ export default function CartDrawer({ isOpen, onClose }) {
             <div className="text-lg font-bold">₹{total}</div>
           </div>
           <div className="flex gap-2">
-            <Link to="/cart" onClick={onClose} className="flex-1 text-center px-4 py-2 bg-pink-500 text-white rounded-md">View Cart</Link>
+            <Link to="/cart" onClick={onClose} className="flex-1 text-center px-4 py-2 bg-purple-500 text-white rounded-md">View Cart</Link>
             <button onClick={handleClear} className="px-4 py-2 bg-gray-100 rounded-md">Clear</button>
           </div>
         </div>

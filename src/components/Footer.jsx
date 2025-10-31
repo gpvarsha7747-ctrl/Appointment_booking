@@ -104,7 +104,7 @@ const Footer = () => {
         {/* ---------- Logo & Info ---------- */}
         <div>
           <h2 className="text-2xl font-bold text-white mb-3">
-            Glow<span className="text-pink-400">Salon</span>
+            Glow<span className="text-purple-400">Salon</span>
           </h2>
           <p className="text-gray-400">
             Experience luxury styling with expert professionals and top-quality
@@ -116,10 +116,10 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">Quick Links</h3>
           <ul className="space-y-2">
-            <li><a href="#hero" className="hover:text-pink-400">Home</a></li>
-            <li><a href="#about" className="hover:text-pink-400">About</a></li>
-            <li><a href="#reviews" className="hover:text-pink-400">Reviews</a></li>
-            <li><a href="#contact" className="hover:text-pink-400">Contact</a></li>
+            <li><a href="#hero" className="hover:text-purple-400">Home</a></li>
+            <li><a href="#about" className="hover:text-purple-400">About</a></li>
+            <li><a href="#reviews" className="hover:text-purple-400">Reviews</a></li>
+            <li><a href="#contact" className="hover:text-purple-400">Contact</a></li>
           </ul>
         </div>
 
@@ -134,7 +134,7 @@ const Footer = () => {
           href="https://www.facebook.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-pink-400"
+          className="hover:text-purple-400"
         >
           <Facebook />
         </a>
@@ -142,7 +142,7 @@ const Footer = () => {
           href="https://www.instagram.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-pink-400"
+          className="hover:text-purple-400"
         >
           <Instagram />
         </a>
@@ -150,7 +150,7 @@ const Footer = () => {
           href="https://twitter.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-pink-400"
+          className="hover:text-purple-400"
         >
           <Twitter />
         </a>

@@ -26,7 +26,7 @@ export default function Step5Customer({ formData, onChange, onPrev, onSubmit }) 
 
       <div className="flex justify-between">
         <button onClick={onPrev} className="px-4 py-2 bg-gray-200 rounded">Back</button>
-        <button onClick={onSubmit} disabled={!canSubmit} className="px-4 py-2 bg-pink-500 text-white rounded disabled:opacity-60">Submit</button>
+        <button onClick={onSubmit} disabled={!canSubmit} className="px-4 py-2 bg-purple-500 text-white rounded disabled:opacity-60">Submit</button>
       </div>
     </div>
   );

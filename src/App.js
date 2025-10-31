@@ -25,6 +25,7 @@ import FemalePedicureManicure from "./components/services/femaleservices/Pedicur
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact.jsx";
 import Booking from "./pages/Booking/Booking.jsx";
+import Services from "./pages/Services.jsx";
 
 export default function App() {
 
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="/services/male/beard-trim" element={<Beardtrim />} />
           <Route path="/services/male/bridal" element={<MaleBridal />} />
           <Route path="/services/male/manicure-pedicure" element={<MalePedicuremanicure />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/cart" element={<Cart />} />
 

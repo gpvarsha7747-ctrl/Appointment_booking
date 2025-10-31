@@ -80,7 +80,7 @@ export default function ReviewSection() {
   return (
     <section id="reviews" className=" bg-gray-200 shadow-lg rounded-md border-lime-300 py-20 px-6 text-center">
       <h2 className="text-4xl font-bold text-gray-800 mb-12">
-        Client <span className="text-pink-500">Reviews</span>
+        Client <span className="text-purple-500">Reviews</span>
       </h2>
 
       <div className="relative max-w-3xl mx-auto  p-10">
@@ -110,7 +110,7 @@ export default function ReviewSection() {
             {text}
           </p>
 
-          <h3 className="text-lg font-semibold text-pink-500">{name}</h3>
+          <h3 className="text-lg font-semibold text-purple-500">{name}</h3>
         </div>
 
         {/* Right Arrow */}

@@ -16,9 +16,9 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+  <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
       {/* ---------- HERO SECTION ---------- */}
-      <div className="relative text-center py-20 bg-gradient-to-r from-pink-600 via-pink-400 to-rose-400 shadow-lg overflow-hidden">
+  <div className="relative text-center py-20 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-500 shadow-lg overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600180758890-6c2ef26a3c4c?auto=format&fit=crop&w=1500&q=80')] bg-cover bg-center opacity-20"></div>
 
         <div className="relative z-10">
@@ -32,21 +32,21 @@ export default function Contact() {
       </div>
 
       {/* ---------- CONTACT INFO ---------- */}
-      <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10 text-center">
+        <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10 text-center">
         <div className="bg-white shadow-lg rounded-2xl p-8 hover:shadow-xl transition-all">
-          <FaPhoneAlt className="text-pink-600 text-4xl mx-auto mb-4" />
+          <FaPhoneAlt className="text-purple-600 text-4xl mx-auto mb-4" />
           <h3 className="text-xl font-semibold mb-2 text-gray-800">Phone</h3>
           <p className="text-gray-600">+91 98765 43210</p>
         </div>
 
         <div className="bg-white shadow-lg rounded-2xl p-8 hover:shadow-xl transition-all">
-          <FaEnvelope className="text-pink-600 text-4xl mx-auto mb-4" />
+          <FaEnvelope className="text-purple-600 text-4xl mx-auto mb-4" />
           <h3 className="text-xl font-semibold mb-2 text-gray-800">Email</h3>
           <p className="text-gray-600">info@yourbeautysalon.com</p>
         </div>
 
         <div className="bg-white shadow-lg rounded-2xl p-8 hover:shadow-xl transition-all">
-          <FaMapMarkerAlt className="text-pink-600 text-4xl mx-auto mb-4" />
+          <FaMapMarkerAlt className="text-purple-600 text-4xl mx-auto mb-4" />
           <h3 className="text-xl font-semibold mb-2 text-gray-800">Location</h3>
           <p className="text-gray-600">
             123 Blossom Street, Indiranagar, Bangalore
@@ -65,27 +65,27 @@ export default function Contact() {
             <input
               type="text"
               placeholder="Your Name"
-              className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
+              className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
             <input
               type="email"
               placeholder="Your Email"
-              className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
+              className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
             <input
               type="text"
               placeholder="Subject"
-              className="md:col-span-2 border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
+              className="md:col-span-2 border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
             <textarea
               rows="5"
               placeholder="Your Message"
-              className="md:col-span-2 border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
+              className="md:col-span-2 border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
             ></textarea>
 
             {/* ---------- TERMS AND CONDITIONS INSIDE FORM ---------- */}
-            <div className="md:col-span-2 bg-pink-50 border border-pink-200 rounded-xl p-4 text-gray-700 text-sm leading-relaxed">
-              <h3 className="text-pink-600 font-semibold mb-2 text-lg">
+            <div className="md:col-span-2 bg-purple-50 border border-purple-200 rounded-xl p-4 text-gray-700 text-sm leading-relaxed">
+              <h3 className="text-purple-600 font-semibold mb-2 text-lg">
                 Terms & Conditions
               </h3>
               <p className="text-gray-600 mb-3">
@@ -102,7 +102,7 @@ export default function Contact() {
                   id="terms"
                   checked={agree}
                   onChange={(e) => setAgree(e.target.checked)}
-                  className="w-4 h-4 text-pink-500 focus:ring-pink-400 border-gray-300 rounded"
+                  className="w-4 h-4 text-purple-500 focus:ring-purple-400 border-gray-300 rounded"
                 />
                 <label htmlFor="terms" className="text-gray-700 text-sm">
                   I have read and agree to the Terms and Conditions
@@ -116,7 +116,7 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="md:col-span-2 py-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
+              className="md:col-span-2 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
             >
               Send Message
             </button>

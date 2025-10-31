@@ -54,7 +54,7 @@ export default function Cart() {
               <div className="text-lg font-semibold">Total: ₹{total}</div>
               <div className="flex gap-2">
                 <button onClick={handleClear} className="px-3 py-2 bg-gray-100 rounded">Clear</button>
-                <button className="px-4 py-2 bg-pink-500 text-white rounded">Proceed to Checkout</button>
+                <button className="px-4 py-2 bg-purple-500 text-white rounded">Proceed to Checkout</button>
               </div>
             </div>
           </div>

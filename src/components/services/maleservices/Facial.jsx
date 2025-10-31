@@ -1,6 +1,7 @@
 import React from "react";
 import { addToCart } from "../../../utils/cart";
 import { useNavigate } from 'react-router-dom';
+import { FaShoppingCart } from "react-icons/fa";
 
 const facialServices = [
   {
@@ -56,9 +57,9 @@ const facialServices = [
 export default function Facial() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white animate-fadeIn">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white animate-fadeIn">
       {/* ---------- HERO SECTION ---------- */}
-      <div className="relative text-center py-20 bg-gradient-to-r from-pink-600 via-pink-400 to-rose-400 shadow-lg">
+      <div className="relative text-center py-20 bg-gradient-to-r from-purple-600 via-purple-400 to-purple-500 shadow-lg">
         <h1 className="text-5xl font-bold text-white drop-shadow-xl mb-4">
           Facial Treatments
         </h1>
@@ -66,7 +67,7 @@ export default function Facial() {
           Refresh, rejuvenate, and revive your skin with our premium facial
           treatments — designed for ultimate glow and relaxation.
         </p>
-        <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-pink-300 to-pink-600"></div>
+        <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-purple-300 to-purple-600"></div>
       </div>
 
       {/* ---------- SERVICE CARDS ---------- */}
@@ -74,7 +75,7 @@ export default function Facial() {
         {facialServices.map((service, index) => (
           <div
             key={index}
-            className="group relative bg-white border border-pink-100 rounded-2xl shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden flex flex-col"
+            className="group relative bg-white border border-purple-100 rounded-2xl shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden flex flex-col"
           >
             {/* IMAGE */}
             <div className="overflow-hidden rounded-t-2xl">
@@ -93,7 +94,7 @@ export default function Facial() {
               <p className="text-gray-600 mb-4 flex-grow">
                 {service.description}
               </p>
-              <p className="text-lg font-bold text-pink-600 mb-4">
+              <p className="text-lg font-bold text-purple-600 mb-4">
                 {service.price}
               </p>
 
@@ -102,9 +103,10 @@ export default function Facial() {
                   addToCart({ id: index, name: service.name, price: service.price, category: 'facial' });
                   navigate('/booking');
                 }}
-                className="mt-auto w-full py-2 text-white font-medium rounded-full bg-gradient-to-r from-pink-500 to-pink-600 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
+                className="mt-auto w-full py-2 text-white font-medium rounded-full bg-gradient-to-r from-purple-500 to-purple-600 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
               >
-                Book Now
+                <FaShoppingCart className="text-lg" />
+                Add to Cart
               </button>
             </div>
           </div>

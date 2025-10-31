@@ -27,7 +27,7 @@ export default function Step1Gender({ formData, onChange, onNext }) {
         <button
           onClick={onNext}
           disabled={!gender}
-          className="px-4 py-2 bg-pink-500 text-white rounded disabled:opacity-60"
+          className="px-4 py-2 bg-purple-500 text-white rounded disabled:opacity-60"
         >
           Next
         </button>

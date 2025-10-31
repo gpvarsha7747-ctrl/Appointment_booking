@@ -1,6 +1,7 @@
 import React from "react";
 import { addToCart } from "../../../utils/cart";
 import { useNavigate } from 'react-router-dom';
+import { FaShoppingCart } from "react-icons/fa";
 
 const waxingServices = [
   {
@@ -44,9 +45,9 @@ const waxingServices = [
 export default function Waxing() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
       {/* ---------- HERO SECTION ---------- */}
-      <div className="relative py-24 text-center bg-gradient-to-r from-pink-600 via-pink-400 to-rose-400 shadow-xl overflow-hidden">
+      <div className="relative py-24 text-center bg-gradient-to-r from-purple-600 via-purple-400 to-purple-500 shadow-xl overflow-hidden">
         {/* Background overlay */}
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581579184681-1e0e8f56abf0?auto=format&fit=crop&w=1500&q=80')] bg-cover bg-center opacity-20"></div>
 
@@ -60,7 +61,7 @@ export default function Waxing() {
           </p>
         </div>
 
-        <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-pink-300 to-pink-600"></div>
+        <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-purple-300 to-purple-600"></div>
       </div>
 
       {/* ---------- FEATURED TAGLINE ---------- */}
@@ -79,9 +80,9 @@ export default function Waxing() {
         {waxingServices.map((service, index) => (
           <div
             key={index}
-            className="group relative bg-white/60 backdrop-blur-md border border-pink-100 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+            className="group relative bg-white/60 backdrop-blur-md border border-purple-100 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
           >
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-400 to-pink-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400 to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
 
             <div className="relative p-6 flex flex-col h-full">
               <h2 className="text-2xl font-semibold text-gray-800 mb-2">
@@ -90,7 +91,7 @@ export default function Waxing() {
               <p className="text-gray-600 mb-4 flex-grow">
                 {service.description}
               </p>
-              <p className="text-lg font-bold text-pink-600 mb-4">
+              <p className="text-lg font-bold text-purple-600 mb-4">
                 {service.price}
               </p>
 
@@ -99,9 +100,10 @@ export default function Waxing() {
                   addToCart({ id: index, name: service.name, price: service.price, category: "waxing" });
                   navigate('/booking');
                 }}
-                className="w-full py-2 text-white font-medium rounded-full bg-gradient-to-r from-pink-500 to-pink-600 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
+                className="w-full py-2 text-white font-medium rounded-full bg-gradient-to-r from-purple-500 to-purple-600 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
               >
-                Book Now
+                <FaShoppingCart className="text-lg" />
+                Add to Cart
               </button>
             </div>
           </div>
@@ -110,8 +112,9 @@ export default function Waxing() {
 
       {/* ---------- CALL TO ACTION ---------- */}
       <div className="text-center pb-20">
-        <button className="px-10 py-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white text-lg font-semibold rounded-full shadow-lg hover:scale-110 hover:shadow-2xl transition-all duration-300">
-          Schedule Your Waxing Session 💆‍♀️
+        <button className="px-10 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white text-lg font-semibold rounded-full shadow-lg hover:scale-110 hover:shadow-2xl transition-all duration-300 flex items-center gap-2 mx-auto">
+          <FaShoppingCart className="text-lg" />
+          Add Services to Cart 💆‍♀️
         </button>
       </div>
     </div>

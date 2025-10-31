@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/Slice/authSlice";
 import { useNavigate } from "react-router-dom";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; 
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, error } = useSelector((state) => state.auth);
 
-  const [formData, setFormData] = useState({ email: "", password: "", role: "user" });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) =>
@@ -20,97 +20,102 @@ export default function Login() {
     const result = await dispatch(loginUser(formData));
 
     if (result.meta.requestStatus === "fulfilled") {
-      const role = result.payload.user.role;
-      navigate(role === "admin" ? "/admin/dashboard" : "/dashboard");
+      navigate("/dashboard");
     }
   };
-
-  // ------------------- Google Login -------------------
-  useEffect(() => {
-    /* global google */
-    if (window.google) {
-      google.accounts.id.initialize({
-        client_id: "YOUR_GOOGLE_CLIENT_ID", // replace with your actual client ID
-        callback: handleGoogleResponse,
-      });
-
-      google.accounts.id.renderButton(
-        document.getElementById("googleSignIn"),
-        { theme: "outline", size: "large", width: "100%" }
-      );
-    }
-  }, []);
-
-  const handleGoogleResponse = async (response) => {
-    const token = response.credential;
-    console.log("Google JWT Token:", token);
-
-    // Optional: send token to backend to log in / create user
-    // Example:
-    // const res = await axios.post("/api/auth/google-login", { token });
-    // dispatch(setUser(res.data.user));
-
-    alert("Google login token received. Implement backend verification!");
-  };
-  // ----------------------------------------------------
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Login</h2>
+    <div className="flex flex-col md:flex-row min-h-screen">
+      {/* Left side - animated salon image */}
+      <div className="hidden md:flex md:w-1/2 justify-center items-center bg-gradient-to-br from-purple-200 via-pink-100 to-purple-300 relative overflow-hidden">
+    
+    <video
+      className="absolute inset-0 w-full h-full object-cover opacity-90"
+      src="/assets/videos/loginleftvideo.mp4"  
+      autoPlay
+      loop
+      muted
+      playsInline
+    ></video>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-            required
-          />
+    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/60 via-pink-300/40 to-transparent"></div>
 
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-              required
-            />
+    <h1 className="relative z-10 text-white text-4xl md:text-7xl font-serif text-center px-6 drop-shadow-lg tracking-wide">
+  Revive Your Glow  <br />
+  <span className="text-pink-100 md:text-3xl font-light italic">
+    Beauty starts with confidence
+  </span>
+</h1>
+
+  </div>
+
+
+      {/* Right side - login form */}
+      <div className="flex justify-center items-center w-full md:w-1/2 bg-gradient-to-br from-purple-200 via-pink-100 to-purple-400 p-6">
+        <div className="w-full max-w-md bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-[0_0_25px_rgba(139,92,246,0.3)]">
+          <h2 className="text-3xl font-extrabold text-center mb-6 text-purple-700">
+            Welcome ✨
+          </h2>
+          <p className="text-center text-gray-500 mb-8 text-sm">
+            Login to your salon account to continue
+          </p>
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full p-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent outline-none transition"
+                required
+              />
+            </div>
+
+            <div className="relative">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Password
+              </label>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full p-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent outline-none transition"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-9 text-gray-500 hover:text-purple-600 transition"
+              >
+                {showPassword ? (
+                  <AiFillEye size={20} />
+                ) : (
+                  <AiFillEyeInvisible size={20} />
+                )}
+              </button>
+            </div>
+
             <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              type="submit"
+              className="w-full bg-gradient-to-r from-purple-600 to-purple-400 text-white font-semibold py-3 rounded-lg shadow-md hover:from-purple-600 hover:to-pink-500 hover:shadow-lg transition-transform duration-300 transform hover:scale-[1.02]"
             >
-              {showPassword ? <AiFillEye size={20} /> : <AiFillEyeInvisible size={20} />}
+              {loading ? "Logging in..." : "Continue"}
             </button>
-          </div>
+          </form>
 
-          <select
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-          >
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
-
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
-          >
-            {loading ? "Logging in..." : "Login"}
-          </button>
-        </form>
-
-        {error && <p className="text-red-500 text-center text-sm mt-3">{error}</p>}
-
-        {/* Google Login Button */}
-        <div className="mt-6" id="googleSignIn"></div>
+          {error && (
+            <p className="text-red-500 text-center text-sm mt-4 bg-red-50 py-2 rounded-lg border border-red-200">
+              {error}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

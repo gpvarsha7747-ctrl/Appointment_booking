@@ -54,14 +54,14 @@ const HeroSection = () => {
 
 
       {/* ---------- HERO BACKGROUND ---------- */}
-      <div className="bg-gradient-to-r from-pink-100 via-pink-200 to-rose-300 min-h-[90vh] flex items-center">
+      <div className="bg-gradient-to-r from-purple-100 via-purple-200 to-purple-300 min-h-[90vh] flex items-center">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 px-6 py-28">
           
           {/* ---------- LEFT CONTENT ---------- */}
           <div className="text-center md:text-left max-w-xl">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight text-gray-800 mb-6">
               Discover Your True Beauty with{" "}
-              <span className="text-pink-600">GlowUp Salon</span>
+              <span className="text-purple-600">GlowUp Salon</span>
             </h1>
 
             <p className="text-lg text-gray-700 mb-8">
@@ -71,7 +71,7 @@ const HeroSection = () => {
             </p>
 
             <div className="flex justify-center md:justify-start gap-4">
-              <button className="flex items-center gap-2 bg-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-pink-700 hover:scale-105 transition-all duration-300"
+              <button className="flex items-center gap-2 bg-purple-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-purple-700 hover:scale-105 transition-all duration-300"
                onClick={() => navigate("/register")}>
                 <Scissors size={18} />
                 Book Appointment
@@ -79,7 +79,7 @@ const HeroSection = () => {
 
               <button
                 onClick={() => navigate("/about")}
-                className="border border-pink-600 text-pink-600 px-6 py-3 rounded-lg font-semibold hover:bg-pink-600 hover:text-white transition-all duration-300"
+                className="border border-purple-600 text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition-all duration-300"
               >
                 View Services
               </button>
@@ -91,7 +91,7 @@ const HeroSection = () => {
             <img
               src=""
               alt="Salon Experience"
-              className="rounded-2xl shadow-2xl w-full max-w-md border-4 border-pink-200"
+              className="rounded-2xl shadow-2xl w-full max-w-md border-4 border-purple-200"
             />
           </div>
         </div>
@@ -99,7 +99,7 @@ const HeroSection = () => {
 
       {/* ---------- FLOATING ICON ---------- */}
       <div className="absolute bottom-6 right-6 bg-white p-3 rounded-full shadow-lg">
-        <Sparkles size={24} className="text-pink-600" />
+        <Sparkles size={24} className="text-purple-600" />
       </div>
     </section>
   );

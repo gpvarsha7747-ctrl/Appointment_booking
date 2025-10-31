@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaHandSparkles, FaSpa, FaLeaf, FaGem } from "react-icons/fa";
+import { FaHandSparkles, FaSpa, FaLeaf, FaGem, FaShoppingCart } from "react-icons/fa";
 import { addToCart } from "../../../utils/cart";
 import { useNavigate } from 'react-router-dom';
 const maniPediServices  = [
@@ -8,7 +8,7 @@ const maniPediServices  = [
        name: "Classic Manicure",
        desc: "Revitalize your hands with cleansing, shaping, and soothing massage for soft and smooth skin.",
        img: "https://images.unsplash.com/photo-1596464716121-7a5ceceb83f1?auto=format&fit=crop&w=800&q=80",
-       icon: <FaHandSparkles className="text-pink-500 text-3xl" />,
+  icon: <FaHandSparkles className="text-purple-500 text-3xl" />,
        price: "₹599",
      },
      {
@@ -74,7 +74,7 @@ const maniPediServices  = [
 const Pedicuremanicure = () => {
   const navigate = useNavigate();
   return (
-     <div className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-pink-100 py-16 px-6">
+  <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-purple-100 py-16 px-6">
       {/* ---- Header ---- */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-3">
@@ -107,7 +107,7 @@ const Pedicuremanicure = () => {
                 {item.name}
               </h3>
               <p className="text-gray-500 text-sm mb-4">{item.desc}</p>
-              <div className="text-lg font-semibold text-pink-600 mb-3">
+              <div className="text-lg font-semibold text-purple-600 mb-3">
                 {item.price}
               </div>
               <button
@@ -115,9 +115,10 @@ const Pedicuremanicure = () => {
                   addToCart({ id: item.id, name: item.name, price: item.price, category: 'mani-pedi' });
                   navigate('/booking');
                 }}
-                className="px-5 py-2 bg-gradient-to-r from-pink-500 to-red-400 text-white rounded-full hover:scale-105 transition-all"
+                className="px-5 py-2 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-full hover:scale-105 transition-all flex items-center justify-center gap-2"
               >
-                Book Now
+                <FaShoppingCart className="text-lg" />
+                Add to Cart
               </button>
             </div>
           </div>
@@ -125,14 +126,15 @@ const Pedicuremanicure = () => {
       </div>
 
       {/* ---- CTA Section ---- */}
-      <div className="mt-20 bg-gradient-to-r from-pink-500 to-red-400 text-white text-center py-12 rounded-3xl shadow-lg max-w-5xl mx-auto">
+      <div className="mt-20 bg-gradient-to-r from-purple-500 to-purple-600 text-white text-center py-12 rounded-3xl shadow-lg max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold mb-4">Pamper Yourself from Tip to Toe ✨</h2>
-        <p className="mb-6 text-pink-100">
+        <p className="mb-6 text-purple-100">
           Book your relaxing pedicure & manicure session and feel the transformation today!
         </p>
-        <button className="bg-white text-pink-600 font-semibold px-8 py-3 rounded-full hover:bg-pink-100 transition-all">
-          Book Appointment
-        </button>
+        {/* <button className="bg-white text-pink-600 font-semibold px-8 py-3 rounded-full hover:bg-pink-100 transition-all flex items-center gap-2 mx-auto">
+          <FaShoppingCart className="text-lg" />
+          Add Services to Cart
+        </button> */}
       </div>
     </div>
   )

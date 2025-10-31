@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaShoppingCart, FaMale, FaFemale,  FaSpa, FaPaintBrush, FaGem } from "react-icons/fa";
 import { getCartCount } from "../utils/cart";
 import CartDrawer from './CartDrawer';
-
+import { FaCut } from "react-icons/fa";
 const Navbar = () => {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const [subDropdownOpen, setSubDropdownOpen] = useState(null);
@@ -33,13 +34,13 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* ---------- Logo ---------- */}
         <Link to="/" className="text-2xl font-bold text-gray-800">
-          Salon<span className="text-pink-500">Style</span>
+          Salon<span className="text-purple-500">Style</span>
         </Link>
 
         {/* ---------- Desktop Menu ---------- */}
         <ul className="hidden md:flex gap-6 text-gray-700 font-medium">
           <li>
-            <Link to="/" className="hover:text-pink-500 transition">
+            <Link to="/" className="hover:text-purple-500 transition">
               Home
             </Link>
           </li>
@@ -48,126 +49,138 @@ const Navbar = () => {
           <li className="relative group">
             <div
               onClick={() => toggleDropdown("services")}
-              className="flex items-center gap-1 cursor-pointer hover:text-pink-500"
+              className="flex items-center gap-1 cursor-pointer hover:text-purple-500 relative"
             >
               Services <ChevronDown size={16} />
             </div>
 
             {dropdownOpen === "services" && (
-              <ul className="absolute bg-white shadow-lg rounded-lg mt-2 py-2 w-52 text-sm border border-gray-100">
-                {/* Male Services */}
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 flex justify-between cursor-pointer"
-                  onClick={() => toggleSubDropdown("male")}
-                >
-                  Male Services <ChevronRight size={14} />
-                </li>
-                {subDropdownOpen === "male" && (
-                  <ul className="absolute left-52 top-0 bg-white shadow-lg rounded-lg py-2 w-48 border border-gray-100">
-                                        <li>
-                      <Link
-                        to="/services/male/hair"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        Hair
-                      </Link>
-                    </li>
-                    <li>
+              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[880px] bg-white shadow-2xl rounded-xl border border-gray-100 p-6 z-50">
+                <div className="grid grid-cols-12 gap-6">
+                  {/* Female column */}
+                  <div className="col-span-5">
+                    <h4 className="text-sm font-semibold text-gray-600 mb-3 flex items-center gap-2"><FaFemale /> Female Services</h4>
+                    <ul className="space-y-2">
                       <li>
-                      <Link
-                        to="/services/male/manicure-pedicure"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                         Manicure & pedicure
-                      </Link>
-                    </li>
-                      <Link
-                        to="/services/male/facial"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        Facial
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/male/beard-trim"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                         Beard Trim
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/male/bridal"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                         Bridal
-                      </Link>
-                    </li>
-                  </ul>
-                )}
+                        <Link to="/services/female/hair" onClick={() => setDropdownOpen(null)} className="flex items-start gap-3 p-2 rounded hover:bg-purple-50">
+                          <FaCut className="text-purple-500 mt-1" />
+                          <div>
+                            <div className="font-medium">Hair</div>
+                            <div className="text-xs text-gray-500">Cuts, coloring & styling</div>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/services/female/makeup" onClick={() => setDropdownOpen(null)} className="flex items-start gap-3 p-2 rounded hover:bg-purple-50">
+                          <FaPaintBrush className="text-purple-500 mt-1" />
+                          <div>
+                            <div className="font-medium">Makeup</div>
+                            <div className="text-xs text-gray-500">Bridal & party makeup</div>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/services/female/waxing" onClick={() => setDropdownOpen(null)} className="flex items-start gap-3 p-2 rounded hover:bg-purple-50">
+                          <FaSpa className="text-purple-500 mt-1" />
+                          <div>
+                            <div className="font-medium">Waxing</div>
+                            <div className="text-xs text-gray-500">Face, body & bikini</div>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/services/female/manicure-pedicure" onClick={() => setDropdownOpen(null)} className="flex items-start gap-3 p-2 rounded hover:bg-purple-50">
+                          <FaGem className="text-purple-500 mt-1" />
+                          <div>
+                            <div className="font-medium">Manicure & Pedicure</div>
+                            <div className="text-xs text-gray-500">Nail care & polish</div>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/services/female/bridal" onClick={() => setDropdownOpen(null)} className="flex items-start gap-3 p-2 rounded hover:bg-purple-50">
+                          <FaGem className="text-purple-500 mt-1" />
+                          <div>
+                            <div className="font-medium">Bridal</div>
+                            <div className="text-xs text-gray-500">Complete bridal packages</div>
+                          </div>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
 
-                {/* Female Services */}
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 flex justify-between cursor-pointer"
-                  onClick={() => toggleSubDropdown("female")}
-                >
-                  Female Services <ChevronRight size={14} />
-                </li>
-                {subDropdownOpen === "female" && (
-                  <ul className="absolute left-52 top-10 bg-white shadow-lg rounded-lg py-2 w-48 border border-gray-100">
-                    <li>
-                      <Link
-                        to="/services/female/hair"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        Hair
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/female/makeup"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                         Makeup
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/female/waxing"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                         Waxing
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/female/manicure-pedicure"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        Manicure & Pedicure
-                      </Link>
-                      <Link
-                        to="/services/female/bridal"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        bridal
-                      </Link>
-                    </li>
-                  </ul>
-                )}
-              </ul>
+                  {/* Male column */}
+                  <div className="col-span-5">
+                    <h4 className="text-sm font-semibold text-gray-600 mb-3 flex items-center gap-2"><FaMale /> Male Services</h4>
+                    <ul className="space-y-2">
+                      <li>
+                        <Link to="/services/male/hair" onClick={() => setDropdownOpen(null)} className="flex items-start gap-3 p-2 rounded hover:bg-purple-50">
+                          <FaCut className="text-purple-500 mt-1" />
+                          <div>
+                            <div className="font-medium">Hair</div>
+                            <div className="text-xs text-gray-500">Cuts & styling</div>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/services/male/facial" onClick={() => setDropdownOpen(null)} className="flex items-start gap-3 p-2 rounded hover:bg-purple-50">
+                          <FaSpa className="text-purple-500 mt-1" />
+                          <div>
+                            <div className="font-medium">Facial</div>
+                            <div className="text-xs text-gray-500">Skin treatments</div>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/services/male/beard-trim" onClick={() => setDropdownOpen(null)} className="flex items-start gap-3 p-2 rounded hover:bg-purple-50">
+                          <FaGem className="text-purple-500 mt-1" />
+                          <div>
+                            <div className="font-medium">Beard Trim</div>
+                            <div className="text-xs text-gray-500">Shaping & grooming</div>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/services/male/manicure-pedicure" onClick={() => setDropdownOpen(null)} className="flex items-start gap-3 p-2 rounded hover:bg-purple-50">
+                          <FaGem className="text-purple-500 mt-1" />
+                          <div>
+                            <div className="font-medium">Manicure & Pedicure</div>
+                            <div className="text-xs text-gray-500">Hand & foot care</div>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/services/male/bridal" onClick={() => setDropdownOpen(null)} className="flex items-start gap-3 p-2 rounded hover:bg-purple-50">
+                          <FaCut className="text-purple-500 mt-1" />
+                          <div>
+                            <div className="font-medium">Bridal (Groom)</div>
+                            <div className="text-xs text-gray-500">Groom packages</div>
+                          </div>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Promo / CTA */}
+                  <div className="col-span-2 flex flex-col items-center justify-center bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+                    <div className="text-sm font-semibold text-purple-600 mb-2">Featured</div>
+                    <div className="font-bold text-lg mb-2">Summer Glow Pack</div>
+                    <p className="text-xs text-gray-600 mb-4 text-center">Save 20% on combined hair + facial packages. Limited time.</p>
+                    <Link to="/services" onClick={() => setDropdownOpen(null)} className="px-3 py-2 bg-purple-500 text-white rounded">Explore all services</Link>
+                  </div>
+                </div>
+              </div>
             )}
           </li>
 
           <li>
-            <Link to="/about" className="hover:text-pink-500 transition">
+            <Link to="/about" className="hover:text-purple-500 transition">
               About
             </Link>
           </li>
 
           <li>
-            <Link to="/contact" className="hover:text-pink-500 transition">
+            <Link to="/contact" className="hover:text-purple-500 transition">
               Contact
             </Link>
           </li>
@@ -178,15 +191,17 @@ const Navbar = () => {
           {/* Cart link - hidden on small screens */}
           <button
             onClick={() => setDrawerOpen(true)}
-            className="hidden md:inline-flex relative items-center text-gray-700 hover:text-pink-500"
+            className="hidden md:inline-flex relative items-center text-gray-700 hover:text-purple-500"
             aria-label="Open cart"
           >
             <FaShoppingCart className="text-2xl" />
             {/* small badge showing cart count */}
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{cartCount}</span>
+            <span className="absolute -top-2 -right-2 bg-purple-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{cartCount}</span>
           </button>
 
-          <button className="bg-gradient-to-r from-pink-500 to-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:scale-105 transition-all duration-300">
+          <button 
+            onClick={() => navigate('/login')} 
+            className="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-lg font-semibold hover:scale-105 transition-all duration-300">
             Login
           </button>
         </div>
@@ -206,7 +221,7 @@ const Navbar = () => {
           <li>
             <Link
               to="/"
-              className="hover:text-pink-500 transition"
+              className="hover:text-purple-500 transition"
               onClick={() => setMenuOpen(false)}
             >
               Home
@@ -216,7 +231,7 @@ const Navbar = () => {
           <li>
             <div
               onClick={() => toggleDropdown("services")}
-              className="flex items-center justify-between cursor-pointer hover:text-pink-500"
+              className="flex items-center justify-between cursor-pointer hover:text-purple-500"
             >
               Services <ChevronDown size={16} />
             </div>
@@ -226,7 +241,7 @@ const Navbar = () => {
                 {/* Male Services */}
                 <div
                   onClick={() => toggleSubDropdown("male")}
-                  className="cursor-pointer hover:text-blue-500"
+                  className="cursor-pointer hover:text-purple-500"
                 >
                   Male Services
                 </div>
@@ -235,7 +250,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         to="/services/male/hair"
-                        className="hover:text-pink-500 block"
+                        className="hover:text-purple-500 block"
                         onClick={() => setMenuOpen(false)}
                       >
                         Hair
@@ -244,7 +259,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         to="/services/male/beard-trim"
-                        className="hover:text-pink-500 block"
+                        className="hover:text-purple-500 block"
                         onClick={() => setMenuOpen(false)}
                       >
                         Beard Trim
@@ -253,7 +268,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         to="/services/male/facial"
-                        className="hover:text-pink-500 block"
+                        className="hover:text-purple-500 block"
                         onClick={() => setMenuOpen(false)}
                       >
                         Facial
@@ -262,7 +277,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         to="/services/male/manicure-pedicure"
-                        className="hover:text-pink-500 block"
+                        className="hover:text-purple-500 block"
                         onClick={() => setMenuOpen(false)}
                       >
                         Manicure & Pedicure
@@ -271,7 +286,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         to="/services/male/bridal"
-                        className="hover:text-pink-500 block"
+                        className="hover:text-purple-500 block"
                         onClick={() => setMenuOpen(false)}
                       >
                         Bridal
@@ -283,7 +298,7 @@ const Navbar = () => {
                 {/* Female Services */}
                 <div
                   onClick={() => toggleSubDropdown("female")}
-                  className="cursor-pointer hover:text-blue-500"
+                  className="cursor-pointer hover:text-purple-500"
                 >
                   Female Services
                 </div>
@@ -292,7 +307,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         to="/services/female/hair"
-                        className="hover:text-pink-500 block"
+                        className="hover:text-purple-500 block"
                         onClick={() => setMenuOpen(false)}
                       >
                         Hair
@@ -301,7 +316,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         to="/services/female/makeup"
-                        className="hover:text-pink-500 block"
+                        className="hover:text-purple-500 block"
                         onClick={() => setMenuOpen(false)}
                       >
                         Makeup
@@ -310,7 +325,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         to="/services/female/waxing"
-                        className="hover:text-pink-500 block"
+                        className="hover:text-purple-500 block"
                         onClick={() => setMenuOpen(false)}
                       >
                         Waxing
@@ -319,7 +334,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         to="/services/female/bridal"
-                        className="hover:text-pink-500 block"
+                        className="hover:text-purple-500 block"
                         onClick={() => setMenuOpen(false)}
                       >
                         Bridal
@@ -328,7 +343,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         to="/services/female/manicure-pedicure"
-                        className="hover:text-pink-500 block"
+                        className="hover:text-purple-500 block"
                         onClick={() => setMenuOpen(false)}
                       >
                         Pedicure & manicure
@@ -337,7 +352,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         to="/cart"
-                        className="hover:text-pink-500 block"
+                        className="hover:text-purple-500 block"
                         onClick={() => setMenuOpen(false)}
                       >
                         Cart
@@ -352,7 +367,7 @@ const Navbar = () => {
           <li>
             <Link
               to="/about"
-              className="hover:text-pink-500 transition"
+              className="hover:text-purple-500 transition"
               onClick={() => setMenuOpen(false)}
             >
               About
@@ -361,7 +376,7 @@ const Navbar = () => {
           <li>
             <Link
               to="/contact"
-              className="hover:text-pink-500 transition"
+              className="hover:text-purple-500 transition"
               onClick={() => setMenuOpen(false)}
             >
               Contact
