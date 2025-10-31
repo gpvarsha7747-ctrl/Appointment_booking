@@ -3,6 +3,7 @@ import React from "react";
 import { Scissors, Sparkles } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
+import { Clock } from "./Clock";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -63,6 +64,7 @@ const HeroSection = () => {
               Discover Your True Beauty with{" "}
               <span className="text-purple-600">GlowUp Salon</span>
             </h1>
+            
 
             <p className="text-lg text-gray-700 mb-8">
               Pamper yourself with our professional hair, skin, and beauty
@@ -88,11 +90,8 @@ const HeroSection = () => {
 
           {/* ---------- RIGHT IMAGE ---------- */}
           <div className="w-full md:w-1/2 flex justify-center">
-            <img
-              src=""
-              alt="Salon Experience"
-              className="rounded-2xl shadow-2xl w-full max-w-md border-4 border-purple-200"
-            />
+          <Clock/>
+
           </div>
         </div>
       </div>
