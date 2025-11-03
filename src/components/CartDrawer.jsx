@@ -1,9 +1,10 @@
 import React from 'react';
 import { getCart, removeFromCart, clearCart } from '../utils/cart';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function CartDrawer({ isOpen, onClose }) {
   const [items, setItems] = React.useState(getCart());
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     setItems(getCart());
@@ -75,7 +76,13 @@ export default function CartDrawer({ isOpen, onClose }) {
             <div className="text-lg font-bold">₹{total}</div>
           </div>
           <div className="flex gap-2">
-            <Link to="/cart" onClick={onClose} className="flex-1 text-center px-4 py-2 bg-purple-500 text-white rounded-md">View Cart</Link>
+            <Link to="/cart" onClick={onClose} className="px-3 py-2 bg-white text-purple-700 rounded-md border border-purple-200 text-center">View Cart</Link>
+            <button
+              onClick={() => { onClose(); navigate('/booking'); }}
+              className="flex-1 text-center px-4 py-2 bg-purple-500 text-white rounded-md"
+            >
+              Proceed to Booking
+            </button>
             <button onClick={handleClear} className="px-4 py-2 bg-gray-100 rounded-md">Clear</button>
           </div>
         </div>

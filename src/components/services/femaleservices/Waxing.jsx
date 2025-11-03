@@ -95,16 +95,23 @@ export default function Waxing() {
                 {service.price}
               </p>
 
-              <button
-                onClick={() => {
-                  addToCart({ id: index, name: service.name, price: service.price, category: "waxing" });
-                  navigate('/booking');
-                }}
-                className="w-full py-2 text-white font-medium rounded-full bg-gradient-to-r from-purple-500 to-purple-600 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <FaShoppingCart className="text-lg" />
-                Add to Cart
-              </button>
+              <div className="flex items-center justify-center gap-2">
+                <button
+                  onClick={() => {
+                    addToCart({ id: index, name: service.name, price: service.price, category: "waxing" });
+                  }}
+                  className="flex-1 px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-medium shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <FaShoppingCart className="text-lg" />
+                  Add to Cart
+                </button>
+                <button
+                  onClick={() => navigate('/booking')}
+                  className="px-4 py-2 rounded-full border border-purple-200 text-purple-600 bg-white hover:bg-purple-50 transition"
+                >
+                  Book Now
+                </button>
+              </div>
             </div>
           </div>
         ))}

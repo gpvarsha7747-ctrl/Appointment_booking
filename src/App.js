@@ -14,6 +14,7 @@ import LandingPage from "./pages/LandingPage";
 // removed unused state and axios fetch (not used in the app currently)
 import AboutPage from "./pages/AboutPage.jsx";
 import Hair from "./components/services/femaleservices/Hair.jsx";
+import Payment from "./pages/Payment.jsx";
 import  Makeup  from "./components/services/femaleservices/Makeup.jsx";
 import Waxing from "./components/services/femaleservices/Waxing.jsx";
 import Bridal from "./components/services/femaleservices/Bridal.jsx";
@@ -26,6 +27,7 @@ import Cart from "./pages/Cart";
 import Contact from "./pages/Contact.jsx";
 import Booking from "./pages/Booking/Booking.jsx";
 import Services from "./pages/Services.jsx";
+import HairMale from "./components/services/maleservices/HairMale.jsx";
 
 export default function App() {
 
@@ -49,16 +51,26 @@ export default function App() {
           <Route path="/services/female/waxing" element={<Waxing />} />
           <Route path="/services/female/manicure-pedicure" element={<FemalePedicureManicure />} />
           <Route path="/services/female/bridal" element={<Bridal />} />
+          
+           <Route path="/booking" element={<Booking />} />
 
           {/* Male Services */}
-          <Route path="/services/male/hair" element={<Hair />} />
+          {/* male compo */}
+          {/* <Route path="/services/male/hair" element={<Hair />} /> */}
+
+          <Route path="/services/male/hair" element={<HairMale />} />
           <Route path="/services/male/facial" element={<Facial />} />
           <Route path="/services/male/beard-trim" element={<Beardtrim />} />
           <Route path="/services/male/bridal" element={<MaleBridal />} />
           <Route path="/services/male/manicure-pedicure" element={<MalePedicuremanicure />} />
+          
           <Route path="/services" element={<Services />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/payment" element={<Payment />} />
+
+          <Route path="/booking" element={<Booking />} />
+
 
           {/* Admin Panel Routes */}
           <Route path="admin" element={<AdminPanel />}>

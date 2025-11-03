@@ -1,7 +1,7 @@
 import React from "react";
 import { addToCart } from "../../../utils/cart";
-import { useNavigate } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const bridalGroomServices = [
   {
@@ -63,6 +63,7 @@ const addOns = [
 
 export default function MaleBridal() {
   const navigate = useNavigate();
+
   return (
   <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
       {/* ---------- HERO SECTION ---------- */}
@@ -117,16 +118,18 @@ export default function MaleBridal() {
               <p className="text-xl font-semibold text-purple-600 mb-4">
                 {service.price}
               </p>
-              <button
-                onClick={() => {
-                  addToCart({ id: index, name: service.name, price: service.price, category: 'groom-bridal' });
-                  navigate('/booking');
-                }}
-                className="px-6 py-2 w-full rounded-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-medium shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <FaShoppingCart className="text-lg" />
-                Add to Cart
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => {
+                    addToCart({ id: index, name: service.name, price: service.price, category: 'groom-bridal' });
+                  }}
+                  className="flex-1 px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-medium shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <FaShoppingCart className="text-lg" />
+                  Add to Cart
+                </button>
+                <button onClick={() => navigate('/booking')} className="px-4 py-2 rounded-full border border-purple-200 text-purple-600 bg-white hover:bg-purple-50 transition">Book Now</button>
+              </div>
             </div>
           </div>
         ))}

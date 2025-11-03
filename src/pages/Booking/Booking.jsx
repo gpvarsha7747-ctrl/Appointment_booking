@@ -1,32 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Step1Gender from "./Step1Gender";
+
+import {
+  fetchGenders,
+  fetchUserDetails,
+  submitBooking,
+  clearSuccess,
+} from "../../redux/Slice/bookingSlice";
 
 export default function Booking() {
+   const dispatch = useDispatch();
+  const { genders, user, successMessage, error } = useSelector(
+    (state) => state.booking
+  );
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
+    gender: "",
     date: "",
     time: "",
-    name: "",
-    phone: "",
+    username: "",
+    contact: "",
     email: "",
   });
 
-  const nextStep = () => setStep(step + 1);
-  const prevStep = () => setStep(step - 1);
+   useEffect(() => {
+    dispatch(fetchGenders());
+    dispatch(fetchUserDetails());
+  }, [dispatch]);
+
+   // Pre-fill from user table
+  useEffect(() => {
+    if (user?.username || user?.email) {
+      setFormData((prev) => ({
+        ...prev,
+        username: user.username || "",
+        contact: user.contact || "",
+        email: user.email || "",
+        date: user.date || "",
+        time: user.time || "",
+      }));
+    }
+  }, [user]);
+
+  
 
   const handleChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
   };
 
+  const nextStep = () => setStep(step + 1);
+  const prevStep = () => setStep(step - 1);
+
   const handleSubmit = () => {
-    console.log("Booking Data:", formData);
-    alert("🎉 Appointment Booked Successfully!");
+    dispatch(submitBooking(formData));
   };
 
+  useEffect(() => {
+    if (successMessage) {
+      alert(successMessage);
+      dispatch(clearSuccess());
+    }
+  }, [successMessage, dispatch]);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-purple-50 flex flex-col items-center justify-center p-6">
+     <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-purple-50 flex flex-col items-center justify-center p-6">
       {/* Step Indicator */}
       <div className="flex justify-center gap-4 mb-10">
-        {[1, 2, 3].map((num) => (
+        {[1, 2, 3, 4].map((num) => (
           <div
             key={num}
             className={`w-10 h-10 flex items-center justify-center rounded-full font-semibold transition-all duration-300 ${
@@ -40,20 +81,31 @@ export default function Booking() {
         ))}
       </div>
 
-      {/* Booking Card */}
       <div className="bg-white shadow-[0_0_25px_rgba(168,85,247,0.6)] rounded-2xl p-8 w-full max-w-md transition-all duration-500">
         {step === 1 && (
-          <div className="animate-fade-in">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-              Select Appointment Date
+          <Step1Gender
+            genders={genders}
+            formData={formData}
+            onChange={handleChange}
+            onNext={nextStep}
+          />
+        )}
+
+        {step === 2 && (
+          <div>
+            <h2 className="text-2xl font-semibold text-center mb-4">
+              Select Date
             </h2>
             <input
               type="date"
               value={formData.date}
               onChange={(e) => handleChange("date", e.target.value)}
-              className="w-full border border-gray-300 rounded-lg p-3 mb-6 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg p-3 mb-4"
             />
-            <div className="flex justify-end">
+            <div className="flex justify-between">
+              <button onClick={prevStep} className="btn btn-outline">
+                ← Back
+              </button>
               <button
                 disabled={!formData.date}
                 onClick={nextStep}
@@ -69,15 +121,15 @@ export default function Booking() {
           </div>
         )}
 
-        {step === 2 && (
-          <div className="animate-fade-in">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-              Choose Time Slot
+        {step === 3 && (
+          <div>
+            <h2 className="text-2xl font-semibold text-center mb-4">
+              Select Time
             </h2>
             <select
               value={formData.time}
               onChange={(e) => handleChange("time", e.target.value)}
-              className="w-full border border-gray-300 rounded-lg p-3 mb-6 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg p-3 mb-4"
             >
               <option value="">Select a Time</option>
               <option>10:00 AM</option>
@@ -88,10 +140,7 @@ export default function Booking() {
               <option>5:00 PM</option>
             </select>
             <div className="flex justify-between">
-              <button
-                onClick={prevStep}
-                className="px-6 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
-              >
+              <button onClick={prevStep} className="btn btn-outline">
                 ← Back
               </button>
               <button
@@ -109,59 +158,47 @@ export default function Booking() {
           </div>
         )}
 
-        {step === 3 && (
-          <div className="animate-fade-in">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+        {step === 4 && (
+          <div>
+            <h2 className="text-2xl font-semibold text-center mb-4">
               Enter Your Details
             </h2>
-
             <input
               type="text"
-              placeholder="Full Name"
-              value={formData.name}
-              onChange={(e) => handleChange("name", e.target.value)}
-              className="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              value={formData.username}
+              placeholder="Username"
+              onChange={(e) => handleChange("username", e.target.value)}
+              className="w-full border border-gray-300 rounded-lg p-3 mb-4 bg-gray-100"
             />
-
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              value={formData.phone}
-              onChange={(e) => handleChange("phone", e.target.value)}
-              className="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:ring-2 focus:ring-purple-400 focus:outline-none"
-            />
-
             <input
               type="email"
-              placeholder="Email Address"
               value={formData.email}
+              placeholder="Email"
               onChange={(e) => handleChange("email", e.target.value)}
-              className="w-full border border-gray-300 rounded-lg p-3 mb-6 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg p-3 mb-4 bg-gray-100"
             />
-
+            <input
+              type="tel"
+              value={formData.contact}
+              placeholder="Contact"
+              onChange={(e) => handleChange("contact", e.target.value)}
+              className="w-full border border-gray-300 rounded-lg p-3 mb-4 bg-gray-100"
+            />
             <div className="flex justify-between">
-              <button
-                onClick={prevStep}
-                className="px-6 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
-              >
+              <button onClick={prevStep} className="btn btn-outline">
                 ← Back
               </button>
               <button
-                disabled={
-                  !formData.name || !formData.phone || !formData.email
-                }
                 onClick={handleSubmit}
-                className={`px-6 py-2 rounded-lg text-white font-semibold transition ${
-                  formData.name && formData.phone && formData.email
-                    ? "bg-purple-500 hover:bg-purple-600"
-                    : "bg-gray-300 cursor-not-allowed"
-                }`}
+                className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg font-semibold"
               >
                 Book Now
               </button>
             </div>
           </div>
         )}
+
+        {error && <p className="text-red-500 text-center mt-4">{error}</p>}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ export default function Login() {
   const navigate = useNavigate();
   const { loading, error } = useSelector((state) => state.auth);
 
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) =>
@@ -61,20 +61,20 @@ export default function Login() {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full p-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent outline-none transition"
-                required
-              />
-            </div>
+  <div>
+    <label className="block text-sm font-semibold text-gray-700 mb-1">
+      Enter Email or Username
+    </label>
+    <input
+  type="text"
+  name="username"
+  placeholder="Enter email or username"
+  value={formData.username || ""}
+  onChange={handleChange}
+  className="w-full p-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent outline-none transition"
+  required
+/>
+  </div>
 
             <div className="relative">
               <label className="block text-sm font-semibold text-gray-700 mb-1">
@@ -111,10 +111,11 @@ export default function Login() {
           </form>
 
           {error && (
-            <p className="text-red-500 text-center text-sm mt-4 bg-red-50 py-2 rounded-lg border border-red-200">
-              {error}
-            </p>
-          )}
+  <p className="text-red-500 text-center text-sm mt-4 bg-red-50 py-2 rounded-lg border border-red-200">
+    {error.error || error.message || "Something went wrong"}
+  </p>
+)}
+
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ export default function Step1Gender({ formData, onChange, onNext }) {
       <h2 className="text-xl font-semibold mb-4">Step 1 — Choose Gender</h2>
 
       <div className="space-y-2 mb-6">
-        {['female', 'male', 'other'].map((g) => (
+        {['female', 'male'].map((g) => (
           <label key={g} className="flex items-center gap-3">
             <input
               type="radio"

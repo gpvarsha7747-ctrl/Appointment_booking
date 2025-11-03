@@ -1,7 +1,7 @@
 import React from "react";
 import { addToCart } from "../../../utils/cart";
-import { useNavigate } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const beardTrimServices = [
   {
@@ -44,6 +44,7 @@ const beardTrimServices = [
 
 export default function BeardTrim() {
   const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
       {/* ---------- HERO SECTION ---------- */}
@@ -73,16 +74,37 @@ export default function BeardTrim() {
                 {service.price}
               </p>
 
-              <button
-                onClick={() => {
-                  addToCart({ id: index, name: service.name, price: service.price, category: 'beard' });
-                  navigate('/booking');
-                }}
-                className="w-full py-2 text-white font-medium rounded-full bg-gradient-to-r from-purple-500 to-purple-600 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <FaShoppingCart className="text-lg" />
-                Add to Cart
-              </button>
+              {/* <div className="flex gap-2 mt-auto">
+                <button
+                  onClick={() => {
+                    addToCart({ id: index, name: service.name, price: service.price, category: 'beard' });
+                  }}
+                  className="flex-1 px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-medium shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <FaShoppingCart className="text-lg" />
+                  Add to Cart
+                </button>
+                <button onClick={() => navigate('/payment')} className="px-4 py-2 rounded-full border border-purple-200 text-purple-600 bg-white hover:bg-purple-50 transition">Book Now</button>
+              </div> */}
+
+                <div className="mt-auto w-full flex gap-2">
+                              <button
+                                onClick={() => {
+                                  addToCart({ id: index, name: service.name, price: service.price, category: 'facial' });
+                                }}
+                                className="flex-1 px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-medium shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                              >
+                                <FaShoppingCart className="text-lg" />
+                                Add to Cart
+                              </button>
+                              <button
+                                onClick={() => navigate('/booking')}
+                                className="px-4 py-2 rounded-full border border-purple-200 text-purple-600 bg-white hover:bg-purple-50 transition"
+                              >
+                                Book Now
+                              </button>
+                            </div>
+
             </div>
           </div>
         ))}
